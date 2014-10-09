@@ -7,7 +7,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.cassandra.core.CassandraOperations;
 
+import com.datastax.driver.core.querybuilder.QueryBuilder;
+import com.datastax.driver.core.querybuilder.Select;
+
 import conf.CassandraConfiguration;
+import domain.Person;
 import domain.User;
 
 /**
@@ -37,8 +41,19 @@ public class Application {
 		
 		operations.insert(user);
 		
-		Long l = operations.count(User.class);		
+		Long l = operations.count(User.class);	
+		
+		
+		
 		System.out.println("Count : "+l);
+		
+		
+		
+		Select select = QueryBuilder.select().from("users");
+		select.where(QueryBuilder.eq("id", 1));
+
+		User p = operations.selectOne(select, User.class);
+		System.out.println(String.format("Found Person with Name [%s] for id [%s]", p.getFname(), p.getId()));
 
 	}
 
