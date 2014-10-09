@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+ext.springVersion='4.0.5.RELEASE'
+
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Cassandra Tryout', 'Implementation-Version': 1
+    }
+}
+
+configurations.all {
+	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+		if (details.requested.group == 'org.springframework') {
+			details.useVersion springVersion
+		}
+	}
+}
+
+repositories {
+	mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    
+	compile 'org.springframework:spring-context:$springVersion',
+			'org.springframework:spring-context-support:$springVersion',
+			'org.springframework.data:spring-data-cassandra:1.1.0.RELEASE',
+			'me.prettyprint:hector-core:0.8.0-2'
+	runtime 'ch.qos.logback:logback-classic:0.9.30'
+}
+
+task wrapper(type: Wrapper){ gradleVersion = '2.1' }
