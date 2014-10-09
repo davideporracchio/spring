@@ -1,7 +1,7 @@
 /**
  * 
  */
-package domain;
+package co.uk.cassandra.domain;
 
 import org.springframework.data.cassandra.mapping.Column;
 import org.springframework.data.cassandra.mapping.PrimaryKey;

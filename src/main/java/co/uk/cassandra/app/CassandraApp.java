@@ -1,4 +1,4 @@
-package app; 
+package co.uk.cassandra.app; 
  
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -8,12 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 
+import co.uk.cassandra.domain.Person;
+
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.core.querybuilder.Select;
-
-import domain.Person;
  
 public class CassandraApp { 
  
